@@ -1,0 +1,2 @@
+---
+mysql_service: "{{ 'mysql-server' if ansible_os_family == 'Debian' else 'mariadb-server' }}"

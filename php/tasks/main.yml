@@ -1,0 +1,28 @@
+---
+- name: Install PHP Debian
+  apt:
+    name: "{{ php_package_debian }}"
+  when: ansible_os_family == "Debian"
+ 
+- name: Install PHP
+  dnf:
+    name: "{{ php_package_redhat }}"
+  when: ansible_os_family == "RedHat"
+
+- name: Get PHP version number
+  command: php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;"
+  register: php_version
+  changed_when: false
+  when: ansible_os_family == "Debian"
+ 
+- name: start php-fpm Debian
+  service:
+    name: "php{{php_version.stdout }}-fpm"
+    state: started
+  when: ansible_os_family == "Debian"
+- name: start php-fpm
+  service:
+    name: php-fpm
+    state: started
+  when: ansible_os_family == "RedHat"
+

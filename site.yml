@@ -1,0 +1,8 @@
+---
+- name: Automated LAMP Stack Deployment
+  hosts: webserver
+  become: true
+  roles:
+    - apache
+    - mysql
+    - php

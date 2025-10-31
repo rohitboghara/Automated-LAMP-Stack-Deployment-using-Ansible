@@ -1,0 +1,6 @@
+---
+- name: Restart Mysql
+  service:
+    name: "{{ 'mysql' if ansible_os_family == 'Debian' else 'mariadb' }}"
+    state: restarted
+

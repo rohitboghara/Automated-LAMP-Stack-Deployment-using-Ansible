@@ -1,0 +1,11 @@
+---
+
+php_package_debian: 
+      - php
+      - php-cli
+      - php-mysql
+      - php-fpm
+php_package_redhat:
+      - php
+      - php-mysqlnd
+      - php-cli

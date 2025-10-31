@@ -1,0 +1,19 @@
+---
+- name: Install Apache Debian
+  apt:
+    name: "{{ apache_service }}"
+    state: present
+  when: ansible_os_family == "Debian"
+- name: Install Apache
+  dnf:
+    name: "{{ apache_service }}"
+    state: present
+  when: ansible_os_family == "RedHat"
+  
+- name: service start
+  service:
+    name: "{{ apache_service }}"
+    state: started
+    enabled: true
+  notify: Restart Apache
+  
